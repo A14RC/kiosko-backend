@@ -1,0 +1,219 @@
+{
+  "info": {
+    "_postman_id": "b5741646-6019-45c1-96f3-100230553018",
+    "name": "KioskoApp API - Proyecto Integrador",
+    "description": "Colección de endpoints para la gestión de inventario y ventas de KioskoApp.\n\nIncluye:\n- CRUD de Productos\n- Gestión de Ventas (Maestro-Detalle)\n- Manejo de Stock automático",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Productos",
+      "item": [
+        {
+          "name": "1. Crear Producto",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Leche Entera 1L\",\n    \"price\": 1.25,\n    \"stockQuantity\": 50\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products"
+              ]
+            },
+            "description": "Crea un nuevo producto en el inventario."
+          },
+          "response": []
+        },
+        {
+          "name": "2. Listar Productos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/products",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products"
+              ]
+            },
+            "description": "Obtiene la lista completa de productos disponibles."
+          },
+          "response": []
+        },
+        {
+          "name": "3. Obtener Producto por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/products/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products",
+                "1"
+              ]
+            },
+            "description": "Busca un producto específico por su ID."
+          },
+          "response": []
+        },
+        {
+          "name": "4. Actualizar Producto",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Leche Entera 1L (Oferta)\",\n    \"price\": 1.10,\n    \"stockQuantity\": 45\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/products/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products",
+                "1"
+              ]
+            },
+            "description": "Actualiza los datos de un producto existente."
+          },
+          "response": []
+        },
+        {
+          "name": "5. Eliminar Producto",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/products/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "products",
+                "1"
+              ]
+            },
+            "description": "Elimina un producto del inventario."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Ventas",
+      "item": [
+        {
+          "name": "1. Registrar Venta (Multi-item)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"items\": [\n        {\n            \"productId\": 1,\n            \"quantity\": 2\n        },\n        {\n            \"productId\": 2,\n            \"quantity\": 1\n        }\n    ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/sales",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "sales"
+              ]
+            },
+            "description": "Registra una nueva venta. Calcula automáticamente el total y reduce el stock de los productos."
+          },
+          "response": []
+        },
+        {
+          "name": "2. Listar Ventas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/sales",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "sales"
+              ]
+            },
+            "description": "Muestra el historial de todas las ventas realizadas."
+          },
+          "response": []
+        },
+        {
+          "name": "3. Obtener Venta por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/sales/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "sales",
+                "1"
+              ]
+            },
+            "description": "Obtiene el detalle completo de una venta específica."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

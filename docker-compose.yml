@@ -1,0 +1,16 @@
+services:
+  db_kiosko:
+    image: postgres:15-alpine
+    container_name: prueba-kiosko
+    restart: always
+    environment:
+      POSTGRES_DB: db_kiosko
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: "1234"
+    ports:
+      - "5432:5432"
+    volumes:
+      - kiosko_data:/var/lib/postgresql/data
+
+volumes:
+  kiosko_data:
