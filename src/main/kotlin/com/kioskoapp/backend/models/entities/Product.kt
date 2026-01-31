@@ -18,5 +18,8 @@ data class Product(
     var price: BigDecimal,
 
     @Column(name = "stock_quantity", nullable = false)
-    var stockQuantity: Int
+    var stockQuantity: Int,
+
+    @Column(nullable = false)
+    var active: Boolean = true
 )

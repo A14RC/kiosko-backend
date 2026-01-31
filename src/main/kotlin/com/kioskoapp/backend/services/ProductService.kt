@@ -45,9 +45,12 @@ class ProductService(private val productRepository: ProductRepository) {
 
     @Transactional
     fun deleteProduct(id: Long) {
+        // 1. Verificar si existe antes de borrar
         if (!productRepository.existsById(id)) {
-            throw ResourceNotFoundException("Producto no encontrado con id $id")
+            // 2. Si no existe, lanzamos nuestra excepción personalizada
+            throw ResourceNotFoundException("No se puede eliminar: Producto no encontrado con id $id")
         }
+        // 3. Si existe, procedemos al borrado físico (o lógico si prefieres)
         productRepository.deleteById(id)
     }
-}
+    }
